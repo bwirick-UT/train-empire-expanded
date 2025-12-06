@@ -25,10 +25,27 @@
         border-radius: 4px;
         cursor: pointer;
       }
+      /* Tool indicator */
+      #tool-indicator {
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        z-index: 1000;
+        padding: 6px 10px;
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        background: rgba(0,0,0,0.6);
+        color: #fff;
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 4px;
+        cursor: pointer;
+        user-select: none;
+      }
     </style>
   </head>
   <body>
     <button id="toggle-labels">Hide Labels (L)</button>
+    <div id="tool-indicator" title="Click to toggle tool">Tool: Hand (H)</div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

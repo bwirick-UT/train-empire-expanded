@@ -51,6 +51,7 @@ export class Game {
         this.setupLabelToggle();
         // initialize tool cursor
         this.setTool(this.tool);
+        this.setupToolUI();
     }
 
     setupLabelToggle() {
@@ -80,6 +81,16 @@ export class Game {
         }
     }
 
+    // attach UI handlers for the tool indicator
+    private setupToolUI() {
+        const el = document.getElementById('tool-indicator');
+        if (!el) return;
+        el.addEventListener('click', () => {
+            const next = this.tool === 'hand' ? 'track' : 'hand';
+            this.setTool(next);
+        });
+    }
+
     setTool(tool: 'hand' | 'track') {
         this.tool = tool;
         // update cursor
@@ -87,6 +98,12 @@ export class Game {
             this.app.view.style.cursor = 'grab';
         } else {
             this.app.view.style.cursor = 'crosshair';
+        }
+        // update DOM indicator if present
+        const el = document.getElementById('tool-indicator');
+        if (el) {
+            el.textContent = tool === 'hand' ? 'Tool: Hand (H)' : 'Tool: Track (T)';
+            el.className = tool === 'hand' ? 'tool-hand' : 'tool-track';
         }
     }
 
